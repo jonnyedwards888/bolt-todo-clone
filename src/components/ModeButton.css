@@ -1,0 +1,29 @@
+.mode-btn {
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    padding: 8px;
+    background-color: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mode-icon {
+    width: 40px;
+    height: 40px;
+    transition: transform 0.3s ease;
+    filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.2));
+}
+
+.mode-btn:hover .mode-icon {
+    transform: scale(1.1) rotate(10deg);
+    filter: drop-shadow(0 6px 8px rgba(0, 0, 0, 0.3));
+}
+
+.mode-btn:active .mode-icon {
+    transform: scale(0.95);
+} 

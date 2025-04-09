@@ -1,0 +1,175 @@
+/* === XP Particle Animation === */
+.xp-particle {
+  position: fixed;
+  width: 10px;
+  height: 10px;
+  background: linear-gradient(135deg, #7FFF00, #32CD32);
+  border-radius: 2px;
+  pointer-events: none;
+  box-shadow: 
+    0 0 6px #7FFF00,
+    inset 0 0 4px rgba(255, 255, 255, 0.8);
+  z-index: 1000;
+  will-change: transform;
+}
+
+@keyframes xpParticle {
+  0% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+  70% {
+    opacity: 0.8;
+    transform: scale(1.1) rotate(240deg);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.6) rotate(360deg);
+  }
+}
+
+/* === Level Up Animation === */
+@keyframes levelUpGlow {
+  0% {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.7),
+                inset 0 1px 2px rgba(255, 255, 255, 0.15),
+                0 0 10px 3px rgba(76, 217, 102, 0);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.8),
+                inset 0 1px 2px rgba(255, 255, 255, 0.15),
+                0 0 30px 12px rgba(76, 217, 102, 0.9);
+    transform: scale(1.08);
+  }
+  100% {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.7),
+                inset 0 1px 2px rgba(255, 255, 255, 0.15),
+                0 0 10px 3px rgba(76, 217, 102, 0);
+    transform: scale(1);
+  }
+}
+
+.level-up-animation {
+  animation: levelUpGlow 0.8s ease-in-out;
+}
+
+/* === Streak Message Animation === */
+.streak-message {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: linear-gradient(135deg, #ff6b6b, #ff8e53);
+  color: white;
+  padding: 20px 40px;
+  border-radius: 10px;
+  font-size: 48px;
+  font-weight: 900;
+  text-transform: uppercase;
+  text-shadow: 
+    3px 3px 0 #ff3d00,
+    -3px -3px 0 #ff3d00,
+    3px -3px 0 #ff3d00,
+    -3px 3px 0 #ff3d00;
+  animation: streakAppear 1s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1000;
+  box-shadow: 
+    0 0 30px rgba(255, 107, 107, 0.5),
+    inset 0 0 20px rgba(255, 255, 255, 0.5);
+  border: 4px solid #fff;
+  font-family: 'Impact', 'Arial Black', sans-serif;
+  letter-spacing: 2px;
+  -webkit-text-stroke: 2px #ff3d00;
+  position: relative;
+  overflow: hidden;
+}
+
+.streak-message::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(
+    circle at center,
+    rgba(255, 171, 0, 0.8) 0%,
+    rgba(255, 61, 0, 0.3) 30%,
+    transparent 70%
+  );
+  animation: rotateFlame 2s linear infinite;
+  z-index: -1;
+}
+
+@keyframes rotateFlame {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes streakAppear {
+  0% {
+    transform: translate(-50%, -50%) scale(0.5) rotate(-10deg);
+    opacity: 0;
+    filter: blur(10px);
+  }
+  20% {
+    transform: translate(-50%, -50%) scale(1.2) rotate(5deg);
+    opacity: 1;
+    filter: blur(0);
+  }
+  30% {
+    transform: translate(-50%, -50%) scale(1) rotate(-3deg);
+  }
+  40% {
+    transform: translate(-50%, -50%) scale(1.1) rotate(2deg);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1) rotate(0deg);
+  }
+  80% {
+    transform: translate(-50%, -50%) scale(1) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.5) rotate(0deg);
+    opacity: 0;
+    filter: blur(10px);
+  }
+}
+
+/* Add a pulsing effect to the text */
+@keyframes textPulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+.streak-message span {
+  display: inline-block;
+  animation: textPulse 0.5s ease-in-out infinite;
+}
+
+/* === Completed Task Animation === */
+@keyframes completedPulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.todo-item.completed {
+  animation: completedPulse 0.3s ease-out;
+} 
